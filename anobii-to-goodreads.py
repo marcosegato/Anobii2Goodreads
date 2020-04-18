@@ -1,5 +1,5 @@
-# Customise these variables to define input and output
-anobii_file = "export.csv"
+# Customize these variables to define input and output
+anobii_file = "anobii_export.csv"
 goodreads_file = "import_to_goodreads.csv" 
 
 ####### do not change anything below this line
@@ -80,27 +80,65 @@ target = []
 target.append(["Title","Author","Additional Authors","ISBN","ISBN13","My Rating","Average Rating","Publisher","Binding","Year Published","Original Publication Year","Date Read","Date Added","Bookshelves","My Review","Spoiler","Private Notes","Recommended For","Recommended By"])
 # loading all in memory is not efficient, there's certainly a better way
 for l in reader:
+	# isbn
 	isbn = l[0].replace("'","")
-	title = l[1] + ":" + l[2]
+	# title
+	if l[2] == "":
+		title = l[1]
+	else:
+		title = l[1] + ". " + l[2]
+	# author
 	author = l[3]
-	format = l[4]
+	# binding
+	binding = l[4]
+	# pages
 	pages = l[5]
+	# publisher
 	publisher = l[6]
-	# expensive date conversion, but might come handy in future
-	pubdate = ""
-	#pd_tmp = l[7].replace("'","").split("-")
-	#if pd_tmp[0]:
-	#	pubdate = date(int(pd_tmp[0]),int(pd_tmp[1]),int(pd_tmp[2])).year 
+	# pubdate
+	pubdate = (l[7])[1:5]
+	# privnote
 	privnote = l[8]
+	# comment
 	comment = l[10]
-	status = l[11]
-	readdate = ""
-	if status[0:9] == "Finished:":
-		readdate = status[10:] # can't be bothered to reformat here
+	# status
+	status = (l[11])[0:6]
+	# bookshelves
+	bookshelves = "to-read";
+	if status == "Finito": bookshelves = "read"
+	if status == "In let": bookshelves = "currently-reading"
+	if status == "Abband": bookshelves = "abandoned"
+	# readdate
+	tmpreaddate = l[11].replace(", 00:00:00","")
+	yreaddate = tmpreaddate[-4:]
+	mtmpreaddate = tmpreaddate.replace(yreaddate,"")[-5:]
+	mreaddate = ""
+	if mtmpreaddate == " gen ": mreaddate = "01"
+	if mtmpreaddate == " feb ": mreaddate = "02"
+	if mtmpreaddate == " mar ": mreaddate = "03"
+	if mtmpreaddate == " apr ": mreaddate = "04"
+	if mtmpreaddate == " mag ": mreaddate = "05"
+	if mtmpreaddate == " giu ": mreaddate = "06"
+	if mtmpreaddate == " lug ": mreaddate = "07"
+	if mtmpreaddate == " ago ": mreaddate = "08"
+	if mtmpreaddate == " set ": mreaddate = "09"
+	if mtmpreaddate == " ott ": mreaddate = "10"
+	if mtmpreaddate == " nov ": mreaddate = "11"
+	if mtmpreaddate == " dic ": mreaddate = "12"
+	dtmpreaddate = tmpreaddate.replace(yreaddate,"").replace(mtmpreaddate,"")[-2:]
+	dreaddate = dtmpreaddate.replace(" ","0")
+	readdate = yreaddate + "-" + mreaddate + "-" + dreaddate
+	if readdate == "1970-01-01": readdate = ""
+	if readdate == "--": readdate = ""
+	# dateadded
+	dateadded = readdate
+	# recover readdate basing on bookshelves
+	if bookshelves == "currently-reading": readdate = ""
+	if bookshelves == "abandoned": readdate = ""
+	# rating
 	rating = l[12]
-	tags = l[13].replace(" ","-").replace("-/-"," ")
 	
-	tline = [title,author,"",isbn,"",rating,"",publisher,format,"",pubdate,readdate,"",tags, comment,"",privnote,"",""]
+	tline = [title,author,"",isbn,"",rating,"",publisher,binding,pubdate,"",readdate,dateadded,bookshelves,comment,"",privnote,"",""]
 	target.append(tline)
 
 writer = UnicodeWriter(open(goodreads_file,"wb"),dialect='excel',quoting=csv.QUOTE_NONNUMERIC)
