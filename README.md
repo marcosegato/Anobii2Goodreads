@@ -2,8 +2,8 @@
 
 This script converts a standard CSV export from the Anobii website to a format you should be able to import into Goodreads.
 
-- Anobii homepage: https://anobii.com
-- Goodreads homepage: https://goodreads.com
+- Anobii homepage: [https://anobii.com](https://anobii.com)
+- Goodreads homepage: [https://goodreads.com](https://goodreads.com)
 
 # How to export from Anobii and import to Goodreads
 
@@ -40,8 +40,8 @@ Python v2.7.x installed
 This script is based on the following works:
 
 * Original version by Giacomo Lacava published on 2008: 
-http://blog.pythonaro.com/2008/08/export-your-books-from-anobii-to_14.html
-* Improvements by Tijs Teulings to make it work again with the latest expot format on 2015: https://codeyarns.com/2015/07/03/how-to-export-from-anobii-and-import-to-goodreads/
+[http://blog.pythonaro.com/2008/08/export-your-books-from-anobii-to_14.html](http://blog.pythonaro.com/2008/08/export-your-books-from-anobii-to_14.html)
+* Improvements by Tijs Teulings to make it work again with the latest expot format on 2015: [https://codeyarns.com/2015/07/03/how-to-export-from-anobii-and-import-to-goodreads/](https://codeyarns.com/2015/07/03/how-to-export-from-anobii-and-import-to-goodreads/)
 
 # License
 GNU General Public License version 3
