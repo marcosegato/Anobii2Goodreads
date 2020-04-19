@@ -17,7 +17,7 @@ Italian language required when exporting from Anobii. If you want to use a diffe
 
 1. Login to Anobii and access your books library page
 2. Click on the option button you can find on the top right, besides ordering filters
-3. Select "Export list" option and select CSV format 
+3. Select "Export list" option and choose CSV format 
 4. You will receive an email in a few minutes with a CSV file attached. Download this file and rename it as `anobii_export.csv`.
 
 ## Convert from Anobii to Goodreads
@@ -43,7 +43,7 @@ This script is based on the following works:
 
 * Original version by Giacomo Lacava published on 2008: 
 [http://blog.pythonaro.com/2008/08/export-your-books-from-anobii-to_14.html](http://blog.pythonaro.com/2008/08/export-your-books-from-anobii-to_14.html)
-* Improvements by Tijs Teulings to make it work again with the latest expot format on 2015: [https://codeyarns.com/2015/07/03/how-to-export-from-anobii-and-import-to-goodreads/](https://codeyarns.com/2015/07/03/how-to-export-from-anobii-and-import-to-goodreads/)
+* Improvements by Tijs Teulings to make it work again with the latest export format on 2015: [https://codeyarns.com/2015/07/03/how-to-export-from-anobii-and-import-to-goodreads/](https://codeyarns.com/2015/07/03/how-to-export-from-anobii-and-import-to-goodreads/)
 
 # License
 GNU General Public License version 3
