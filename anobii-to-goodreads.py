@@ -88,6 +88,9 @@ target.append(["Title","Author","Additional Authors","ISBN","ISBN13","My Rating"
 for l in reader:
 	# isbn
 	isbn = l[0].replace("'","")
+	if isbn is None or isbn == "":
+		print "Invalid ISBN in '" + l[1] + "' book, consider adding it manually"
+		continue
 	# title
 	if l[2] == "":
 		title = l[1]
