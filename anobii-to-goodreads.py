@@ -2,6 +2,12 @@
 anobii_file = "anobii_export.csv"
 goodreads_file = "import_to_goodreads.csv" 
 
+# Customize language translations
+FINISHED = "Finito nel "
+DROPPED  = "Abbandonato nel "
+READING  = "In lettura dal "
+MONTHS   = ["gen", "feb", "mar", "apr", "mag", "giu", "lug", "ago", "set", "ott", "nov", "dic"]
+
 ####### do not change anything below this line
 
 from datetime import date
@@ -102,29 +108,29 @@ for l in reader:
 	# comment
 	comment = l[10]
 	# status
-	status = (l[11])[0:6]
+	status = l[11]
 	# bookshelves
 	bookshelves = "to-read";
-	if status == "Finito": bookshelves = "read"
-	if status == "In let": bookshelves = "currently-reading"
-	if status == "Abband": bookshelves = "abandoned"
+	if status.startswith(FINISHED): bookshelves = "read"
+	if status.startswith(READING):  bookshelves = "currently-reading"
+	if status.startswith(DROPPED):  bookshelves = "gave-up-on"
 	# readdate
 	tmpreaddate = l[11].replace(", 00:00:00","")
 	yreaddate = tmpreaddate[-4:]
 	mtmpreaddate = tmpreaddate.replace(yreaddate,"")[-5:]
 	mreaddate = ""
-	if mtmpreaddate == " gen ": mreaddate = "01"
-	if mtmpreaddate == " feb ": mreaddate = "02"
-	if mtmpreaddate == " mar ": mreaddate = "03"
-	if mtmpreaddate == " apr ": mreaddate = "04"
-	if mtmpreaddate == " mag ": mreaddate = "05"
-	if mtmpreaddate == " giu ": mreaddate = "06"
-	if mtmpreaddate == " lug ": mreaddate = "07"
-	if mtmpreaddate == " ago ": mreaddate = "08"
-	if mtmpreaddate == " set ": mreaddate = "09"
-	if mtmpreaddate == " ott ": mreaddate = "10"
-	if mtmpreaddate == " nov ": mreaddate = "11"
-	if mtmpreaddate == " dic ": mreaddate = "12"
+	if mtmpreaddate.strip() == MONTHS[0]:  mreaddate = "01"
+	if mtmpreaddate.strip() == MONTHS[1]:  mreaddate = "02"
+	if mtmpreaddate.strip() == MONTHS[2]:  mreaddate = "03"
+	if mtmpreaddate.strip() == MONTHS[3]:  mreaddate = "04"
+	if mtmpreaddate.strip() == MONTHS[4]:  mreaddate = "05"
+	if mtmpreaddate.strip() == MONTHS[5]:  mreaddate = "06"
+	if mtmpreaddate.strip() == MONTHS[6]:  mreaddate = "07"
+	if mtmpreaddate.strip() == MONTHS[7]:  mreaddate = "08"
+	if mtmpreaddate.strip() == MONTHS[8]:  mreaddate = "09"
+	if mtmpreaddate.strip() == MONTHS[9]:  mreaddate = "10"
+	if mtmpreaddate.strip() == MONTHS[10]: mreaddate = "11"
+	if mtmpreaddate.strip() == MONTHS[11]: mreaddate = "12"
 	dtmpreaddate = tmpreaddate.replace(yreaddate,"").replace(mtmpreaddate,"")[-2:]
 	dreaddate = dtmpreaddate.replace(" ","0")
 	readdate = yreaddate + "-" + mreaddate + "-" + dreaddate
@@ -134,7 +140,7 @@ for l in reader:
 	dateadded = readdate
 	# recover readdate basing on bookshelves
 	if bookshelves == "currently-reading": readdate = ""
-	if bookshelves == "abandoned": readdate = ""
+	if bookshelves == "gave-up-on": readdate = ""
 	# rating
 	rating = l[12]
 	

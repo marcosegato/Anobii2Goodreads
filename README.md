@@ -11,7 +11,14 @@ This script converts a standard CSV export from the Anobii website to a format y
 
 Python v2.7.x installed
 
-Italian language required when exporting from Anobii. If you want to use a different language, you should change some strings in Python script: look for `status` and `mtmpreaddate` variables, the code is really basic to understand.
+The script contains a configuration section to manage different language translations. Italian is the default one; if you need to manage a different language, you must customize the following constants basing on your Anobii export content file:
+
+|||
+|------|-------|
+|`FINISHED`|Book you finished|
+|`DROPPED`|Book you gave up on|
+|`READING`|Book you're currently reading|
+|`MONTHS`|List of months|
 
 ## Export from Anobii
 
