@@ -9,9 +9,9 @@ This script converts a standard CSV export from the Anobii website to a format y
 
 ## Prerequisites
 
-Python v2.7.x installed
+Python 3 installed
 
-The script contains a configuration section to manage different language translations. Italian is the default one; if you need to manage a different language, you must customize the following constants basing on your Anobii export content file:
+The script contains a configuration section to manage different language translations. English is the default one; if you need to manage a different language, you must customize the following constants basing on your Anobii export content file:
 
 |||
 |------|-------|
@@ -36,7 +36,7 @@ The script contains a configuration section to manage different language transla
 2. Place the `anobii_export.csv` file in the same directory containing the `anobii-to-goodreads.py` script.
 3. Perform the conversion, the output is written to `import_to_goodreads.csv` file:
     ```shell
-    $ python anobii-to-goodreads.py
+    $ python3 anobii-to-goodreads.py
     ```
 ## Import to Goodreads
 
